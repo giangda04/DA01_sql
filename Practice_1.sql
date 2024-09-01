@@ -61,6 +61,15 @@ select distinct author_id as 'id' from Views
 where author_id = viewer_id 
 order by author_id 
 
---ex13
---ex14
---ex15
+--ex13: determine which parts have begun the assembly process but are not yet finished
+SELECT part FROM parts_assembly
+WHERE finish_date is null
+  
+--ex14:Find all Lyft drivers who earn either equal to or less than 30k USD or equal to or more than 70k USD.
+select * from lyft_drivers
+where yearly_salary <= 30000 or yearly_salary >= 70000
+
+--ex15: Find the advertising channel where Uber spent more than 100k USD in 2019.
+select advertising_channel from uber_advertising
+where money_spent > 100000 and year = 2019
+
