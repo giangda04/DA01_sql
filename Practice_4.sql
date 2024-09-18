@@ -20,3 +20,18 @@ case
     else 'No'
 end as triangle
 from Triangle
+
+
+--ex3: 
+SELECT 
+round(sum(
+CASE
+    when call_category = 'n/a' or call_category is null then 1
+    else 0
+END)*100/count(*),1)
+
+FROM callers;
+
+--ex4: Find the names of the customer that are not referred by the customer with id = 2.
+select name from Customer
+where referee_id != 2 or referee_id is null
