@@ -23,15 +23,27 @@ from Triangle
 
 
 --ex3: 
-SELECT 
-round(sum(
+SELECT round(sum(
 CASE
     when call_category = 'n/a' or call_category is null then 1
     else 0
-END)*100/count(*),1)
-
+END)*100/count(*),1) as uncategorised_call_pct
 FROM callers;
 
 --ex4: Find the names of the customer that are not referred by the customer with id = 2.
 select name from Customer
 where referee_id != 2 or referee_id is null
+
+/* ex5: Make a report showing the number of survivors and non-survivors by passenger class.
+Classes are categorized based on the pclass value as:
+pclass = 1: first_class
+pclass = 2: second_classs
+pclass = 3: third_class
+Output the number of survivors and non-survivors by each class. */
+
+select survived,
+sum(case when pclass=3 then 1 else 0 end ) as third_class,
+sum(case when pclass=2 then 1 else 0 end ) as second_classs,
+sum(case when pclass=1 then 1 else 0 end ) as first_class
+from titanic
+group by survived
