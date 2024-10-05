@@ -33,3 +33,12 @@ group by policy_holder_id
 having count(case_id) >= 3 )
 
 select count(policy_holder_id) from cte_count_case_id
+
+
+/* ex4: Write a query to return the IDs of the Facebook pages that have zero likes. The output should be sorted in ascending order based on the page IDs. */
+select page_id from pages
+where not EXISTS 
+(select page_id from page_likes as a
+where pages.page_id=a.page_id )
+
+/* ex5: 
